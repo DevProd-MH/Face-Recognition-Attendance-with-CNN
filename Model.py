@@ -48,7 +48,7 @@ def model(input_shape, num_classes):
     model.add(Activation("softmax"))
 
     model.compile(loss='categorical_crossentropy',
-                  optimizer='RMSprop',
+                  optimizer='adam',
                   metrics=['accuracy'])
 
     model.summary()

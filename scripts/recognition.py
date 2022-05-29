@@ -13,19 +13,22 @@ from PIL import Image
 from Model import model
 import csv
 
+
 labels = []
+
+srcpath = ''
 
 
 def getImagesAndLabels():
 
-    path = 'dataset'
+    path = os.path.join(srcpath, 'dataset')
     imagePaths = [os.path.join(path, f) for f in os.listdir(path)]
     faceSamples = []
     ids = []
 
     for imagePath in imagePaths:
 
-        # if there is an error saving any jpegs
+        # in case of error
         try:
             PIL_img = Image.open(imagePath).convert(
                 'L')  # convert it to grayscale
@@ -36,25 +39,24 @@ def getImagesAndLabels():
         id = int(os.path.split(imagePath)[-1].split(".")[1])
         faceSamples.append(img_numpy)
         ids.append(id)
-
-        with open('list/idname.csv', mode='r') as file:
+        csvPath = os.path.join(srcpath, 'list/idname.csv')
+        with open(csvPath, mode='r') as file:
             csvFile = csv.reader(file)
             for lines in csvFile:
                 labels.append(lines[0])
     return faceSamples, ids
 
 
-_, ids = getImagesAndLabels()
-model = model((32, 32, 1), len(set(ids)))
-model.load_weights('trainedModel/trained_model.h5')
-model.summary()
-
-cascPath = "haarcascade_frontalface_default.xml"
-faceCascade = cv2.CascadeClassifier(cascPath)
-font = cv2.FONT_HERSHEY_COMPLEX
-
-
-def start():
+def start(srcPath):
+    srcpath = srcPath
+    _, ids = getImagesAndLabels()
+    model = model((32, 32, 1), len(set(ids)))
+    model.load_weights(os.path.join(srcpath, 'trainedModel/trained_model.h5'))
+    model.summary()
+    cascPath = os.path.join(
+        srcpath, "haarcascade/haarcascade_frontalface_alt_tree.xml")
+    faceCascade = cv2.CascadeClassifier(cascPath)
+    font = cv2.FONT_HERSHEY_COMPLEX
     cap = cv2.VideoCapture(0)
     cap.set(3, 640)  # set video widht
     cap.set(4, 480)  # set video height
@@ -133,6 +135,3 @@ def start():
 
     cap.release()
     cv2.destroyAllWindows()
-
-
-start()
