@@ -85,10 +85,11 @@ print("\nStarting data Augmentation...\n###\n")
 p = Augmentor.Pipeline('tmp')
 p.flip_left_right(0.5)
 p.flip_random(0.5)
-p.black_and_white(0.1)
+p.random_distortion(probability=1, grid_width=4, grid_height=4, magnitude=8)
 p.skew(0.4, 0.5)
 p.rotate(probability=0.7, max_left_rotation=10, max_right_rotation=10)
 p.zoom(probability=0.5, min_factor=1.1, max_factor=1.5)
+p.process()
 p.sample(300)
 
 outpath = "tmp/output"
