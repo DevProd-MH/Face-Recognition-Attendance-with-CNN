@@ -1,5 +1,3 @@
-import cv2
-import numpy as np
 from PIL import Image
 import os
 import numpy as np
@@ -50,7 +48,7 @@ def model(input_shape, num_classes):
     model.add(Activation("softmax"))
 
     model.compile(loss='categorical_crossentropy',
-                  optimizer='adam',
+                  optimizer='RMSprop',
                   metrics=['accuracy'])
 
     model.summary()

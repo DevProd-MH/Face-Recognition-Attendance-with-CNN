@@ -13,6 +13,8 @@ from PIL import Image
 from Model import model
 import csv
 
+labels = []
+
 
 def getImagesAndLabels():
 
@@ -34,6 +36,11 @@ def getImagesAndLabels():
         id = int(os.path.split(imagePath)[-1].split(".")[1])
         faceSamples.append(img_numpy)
         ids.append(id)
+
+        with open('list/idname.csv', mode='r') as file:
+            csvFile = csv.reader(file)
+            for lines in csvFile:
+                labels.append(lines[0])
     return faceSamples, ids
 
 
@@ -44,12 +51,14 @@ model.summary()
 
 cascPath = "haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascPath)
-font = cv2.FONT_HERSHEY_SIMPLEX
+font = cv2.FONT_HERSHEY_COMPLEX
 
 
 def start():
     cap = cv2.VideoCapture(0)
-    print('here')
+    cap.set(3, 640)  # set video widht
+    cap.set(4, 480)  # set video height
+    print('Video Capture Started')
     ret = True
 
     clip = []
@@ -75,47 +84,53 @@ def start():
         if c & 0xFF == ord('q'):
             break
 
-        #gray = gray[np.newaxis,:,:,np.newaxis]
-        gray = gray.reshape(-1, 32, 32, 1).astype('float32') / 255.
+        gray = gray[np.newaxis, :, :, np.newaxis]
+        #gray = gray.reshape(-1, 32, 32, 1).astype('float32') / 255.
         print(gray.shape)
         prediction = model.predict(gray)
         print("prediction:" + str(prediction))
-
         print("\n\n\n\n")
         print("----------------------------------------------")
-        labels = []
-        with open('dataset/list/idname.csv', mode='r') as file:
-            csvFile = csv.reader(file)
-            for lines in csvFile:
-                labels.append(lines[0])
-        prediction = prediction.tolist()
 
+        prediction = prediction.tolist()
         listv = prediction[0]
         n = listv.index(max(listv))
         print("\n")
         print("----------------------------------------------")
         print("Highest Probability: " +
-              labels[n] + "==>" + str(prediction[0][n]))
+              labels[n] + " ==> " + str(prediction[0][n]))
         print("Highest Probability: " + "User " +
-              str(n) + "==>" + str(prediction[0][n]))
+              str(n) + " ==> " + str(prediction[0][n]))
 
         print("----------------------------------------------")
         print("\n")
         for (x, y, w, h) in faces:
             try:
+                confidence = prediction[0][n]
                 cv2.rectangle(nframe, (x, y), (x+w, y+h), (0, 255, 0), 2)
-                cv2.putText(nframe, str(
-                    labels[n]), (x+5, y-5), font, 1, (255, 255, 255), 2)
-                cv2.putText(nframe, str(confidence), (x+5, y+h-5),
+                id = "H"
+                conf = "0"
+                if (confidence <= 100):
+                    id = labels[n]
+                    conf = "  {0}%".format(round(100 - confidence))
+                else:
+                    id = "unknown"
+                    conf = "  {0}%".format(round(100 - confidence))
+
+                cv2.putText(nframe, str(id), (x+5, y-5),
+                            font, 1, (255, 255, 255), 2)
+                cv2.putText(nframe, str(conf), (x+5, y+h-5),
                             font, 1, (255, 255, 0), 1)
             except:
                 la = 2
-        prediction = np.argmax(model.predict(gray), 1)
-        print(prediction)
-        cv2.imshow('result', nframe)
-        c = cv2.waitKey(1)
-        if c & 0xFF == ord('q'):
-            break
+
+            prediction = np.argmax(model.predict(gray), 1)
+            print(prediction)
+            cv2.imshow('result', nframe)
+            c = cv2.waitKey(1)
+            if c & 0xFF == ord('q'):
+                break
+
     cap.release()
     cv2.destroyAllWindows()
 

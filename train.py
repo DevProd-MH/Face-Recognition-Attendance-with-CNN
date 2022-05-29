@@ -95,7 +95,7 @@ checkpoint = callbacks.ModelCheckpoint(
 model.fit(
     x_train, y_train,
     batch_size=32,
-    epochs=10,
+    epochs=20,
     validation_data=(x_test, y_test),
     shuffle=True,
     callbacks=[checkpoint]

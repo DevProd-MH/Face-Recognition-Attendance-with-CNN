@@ -9,7 +9,7 @@ import csv
 path = 'dataset'
 if not os.path.isdir(path):
     os.mkdir(path)
-    os.mkdir(os.path.join(path, 'list'))
+    os.mkdir('list')
 
 if len(os.listdir(path)) == 0:
     print("\n\n### it's your first time using this application. Enjoy!. ###")
@@ -21,7 +21,8 @@ face_detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 # For each person, enter it's name and id will be auto-generated
 name = input("\nEnter Person's Name : ")
 face_id = 0
-filename = "dataset/list/ids.csv"
+filename = "list/ids.csv"
+
 if not os.path.isfile(filename):
     with open(filename, 'w') as csvfile:
         csvwriter = csv.writer(csvfile)
@@ -36,14 +37,14 @@ else:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerows(str(face_id))
 
-csvPath = 'dataset/list/idname.csv'
+csvPath = 'list/idname.csv'
 df = pd.DataFrame({name})
 
 isFile = os.path.isfile(csvPath)
 if not isFile:
-    df.to_csv(r'dataset/list/idname.csv', index=False, header=False)
+    df.to_csv(r'list/idname.csv', index=False, header=False)
 else:
-    df.to_csv('dataset/list/idname.csv', mode='a', index=False, header=False)
+    df.to_csv('list/idname.csv', mode='a', index=False, header=False)
 
 print("\nStarting Face Capture...")
 # Initialize individual sampling face count
@@ -61,12 +62,10 @@ while(True):
         cv2.rectangle(img, (x, y), (x+w+50, y+h+50), (255, 0, 0), 2)
         count += 1
 
-        # Save the captured image into the dataset folder
+        # Save the captured image into the tmp folder
         gray = gray[y:y+h, x:x+w]
 
         cv2.imwrite("tmp/User." + str(face_id) +
-                    '.' + str(count) + ".jpg", gray)
-        cv2.imwrite("dataset/User." + str(face_id) +
                     '.' + str(count) + ".jpg", gray)
 
         cv2.imshow('image', img)
@@ -92,10 +91,15 @@ p.rotate(probability=0.7, max_left_rotation=10, max_right_rotation=10)
 p.zoom(probability=0.5, min_factor=1.1, max_factor=1.5)
 p.sample(300)
 
-outpath = "tmp/output/"
+outpath = "tmp/output"
 for f in os.listdir(outpath):
     count += 1
-    os.rename(os.path.join(outpath, f), "dataset/User." +
+    os.rename(os.path.join(outpath, f), "tmp/User." +
               str(face_id) + '.' + str(count) + ".jpg")
-shutil.rmtree('tmp')
+shutil.rmtree(outpath)
+outpath = "tmp"
+for f in os.listdir(outpath):
+    shutil.move(os.path.join(outpath, f), "dataset")
+
+shutil.rmtree(outpath)
 print('\n###\nData Augmentation Terminated.')
