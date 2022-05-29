@@ -10,7 +10,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout
 from tensorflow.keras.layers import Dense, Activation, Flatten
 from PIL import Image
-from Model import model
+from Model import model as md
 import csv
 
 
@@ -50,7 +50,7 @@ def getImagesAndLabels():
 def start(srcPath):
     srcpath = srcPath
     _, ids = getImagesAndLabels()
-    model = model((32, 32, 1), len(set(ids)))
+    model = md((32, 32, 1), len(set(ids)))
     model.load_weights(os.path.join(srcpath, 'trainedModel/trained_model.h5'))
     model.summary()
     cascPath = os.path.join(

@@ -16,7 +16,7 @@ from tensorflow.keras.layers import Dense, Activation, Flatten
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras import backend as K
 from sklearn.model_selection import train_test_split
-from Model import model
+from Model import model as md
 from tensorflow.keras import callbacks
 
 
@@ -69,7 +69,7 @@ def train(srcpath):
 
     K.clear_session()
     n_faces = len(set(ids))
-    model = model((32, 32, 1), n_faces)
+    model = md((32, 32, 1), n_faces)
     faces = np.asarray(faces)
     faces = np.array([downsample_image(ab) for ab in faces])
     ids = np.asarray(ids)

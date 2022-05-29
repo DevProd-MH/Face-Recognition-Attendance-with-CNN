@@ -44,7 +44,7 @@ def makeDataset(srcpath):
 
     isFile = os.path.isfile(csvPath)
     if not isFile:
-        df.to_csv(r'%s', index=False, header=False)
+        df.to_csv(r'list/idname.csv', index=False, header=False)
     else:
         df.to_csv(csvPath, mode='a', index=False, header=False)
 

@@ -3,7 +3,6 @@ import scripts.open_camera as open_camera
 import scripts.dataset as dataset
 import scripts.recognition as reco
 import scripts.train as train
-import sys
 
 
 def title_bar():
@@ -16,8 +15,6 @@ def title_bar():
 def mainMenu():
 
     path = os.path.realpath(os.path.dirname(__file__))
-    #sys.path.insert(1, os.path.join(path, 'scripts'))
-    print(path)
     title_bar()
     print()
     print(10 * "*", "WELCOME", 10 * "*")
@@ -68,17 +65,11 @@ def CaptureFaces(path):
     mainMenu()
 
 
-# -----------------------------------------------------------------
-# calling the train images from train_images.py file
-
 def Trainimages(path):
     train.train(path)
     key = input("Enter any key to return main menu")
     mainMenu()
 
-
-# --------------------------------------------------------------------
-# calling the recognize_attendance from recognize.py file
 
 def RecognizeFaces(path):
     reco.start(path)
