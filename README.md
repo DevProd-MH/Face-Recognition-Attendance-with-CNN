@@ -26,7 +26,7 @@ python main.py
 
 Select what you want to do :
 
-![alt](img/choice.png)
+<img src="img/choice.png" alt="Main Menu" style="height: 300px; width:400px;"/>
 
 ### 2.1. What will happen when you enter a choice
 
