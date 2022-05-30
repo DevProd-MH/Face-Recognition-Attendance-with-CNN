@@ -4,8 +4,6 @@
 
 ## 1. Prerequisites
 
-libs to be installed :
-
 - opencv & opencv-contrib
 - pandas
 - numpy
@@ -15,6 +13,8 @@ libs to be installed :
 - keras
 - dlib
 - csv
+- shutil
+- imutils
 
 ## 2. Run
 
@@ -26,14 +26,7 @@ python main.py
 
 Select what you want to do :
 
-```sh
-[1] Open Camera
-[2] Capture Faces & Make Dataset
-[3] Train Images
-[4] Recognize & Attendance
-[5] Quit
-Enter Choice:
-```
+![alt](img/choice.png)
 
 ### 2.1. What will happen when you enter a choice
 
