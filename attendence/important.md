@@ -1,10 +1,11 @@
 # Notice #1
 
-file `studentList.csv` contains the students names list, write your students names one by one each, name in single line in the first column as shown bellow :
+file `studentList.csv` contains the students names list, write your students names one by one ,each name in single line in the first column as shown bellow :
 | Column1 | Column2 | Column3 |
 |-----------|:-----------:|:-----------:|
 | student1 full name | | |
 | student2 full name | | |
+| ... | | |
 
 # Notice #2
 
@@ -22,4 +23,6 @@ when writing names in `studentList.csv` you must match the already entered names
 
 # Notice #3
 
-#### **Do Not Rename the file - keep file name as it is**
+**Do Not Rename the file**, i repeat ... **DO NOT RENAME THE FILE**.
+
+<br> unless you know what you're doing and can take care of yourself
