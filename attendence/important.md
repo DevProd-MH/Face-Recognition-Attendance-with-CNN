@@ -1,6 +1,6 @@
 # Notice
 
-file `studentList.csv` contains the students names list, write your students names one by one each name in single line in the first column as shown bellow :<br>
+file `studentList.csv` contains the students names list, write your students names one by one each name in single line in the first column as shown bellow :
 | Column1 | Column2 |  
 |-----------|:-----------:|
 | student1 full name | |  
