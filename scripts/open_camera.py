@@ -25,7 +25,7 @@ def camer(srcpath):
 
         # Draw the rectangle around each face
         for (x, y, w, h) in faces:
-            cv2.rectangle(img, (x, y), (x + w, y + h), (10, 159, 255), 2)
+            cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
         # Display
         cv2.imshow('Webcam Check', img)

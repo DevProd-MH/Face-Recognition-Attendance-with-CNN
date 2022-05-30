@@ -11,12 +11,19 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout
 from tensorflow.keras.layers import Dense, Activation, Flatten
 from PIL import Image
 from Model import model as md
+from marker import mark
 import csv
-
+from datetime import date
+from datetime import datetime
 
 labels = []
 
 srcpath = ''
+
+
+def markAttendance():
+
+    return
 
 
 def getImagesAndLabels():
@@ -48,13 +55,15 @@ def getImagesAndLabels():
 
 
 def start(srcPath):
+    PrsList = []
+    strtme = datetime.now().strftime("%H:%M:%S")
     srcpath = srcPath
     _, ids = getImagesAndLabels()
     model = md((32, 32, 1), len(set(ids)))
     model.load_weights(os.path.join(srcpath, 'trainedModel/trained_model.h5'))
     model.summary()
     cascPath = os.path.join(
-        srcpath, "haarcascade/haarcascade_frontalface_alt_tree.xml")
+        srcpath, "haarcascade/haarcascade_frontalface_default.xml")
     faceCascade = cv2.CascadeClassifier(cascPath)
     font = cv2.FONT_HERSHEY_COMPLEX
     cap = cv2.VideoCapture(0)
@@ -123,6 +132,9 @@ def start(srcPath):
                             font, 1, (255, 255, 255), 2)
                 cv2.putText(nframe, str(conf), (x+5, y+h-5),
                             font, 1, (255, 255, 0), 1)
+                if not str(id) in PrsList:
+                    PrsList.append(str(id))
+
             except:
                 la = 2
 
@@ -135,3 +147,4 @@ def start(srcPath):
 
     cap.release()
     cv2.destroyAllWindows()
+    mark(PrsList, strtme)
