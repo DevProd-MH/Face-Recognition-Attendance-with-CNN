@@ -50,8 +50,11 @@ Enter Choice:
   Train the **CNN model** on the images collected on `dataset` directory and save on `trainedModel` directory as `trained_model.h5`
 
 - #### Choice 4
+
   Start **Real-Time** multi **face-recognition** and record the present persons, after stoping the system will extarct the absent persons from a pre-given list and save same info and pack everything on `attendence` directory as `.csv` as `{date-of-today}.csv`
-  <br>[see more](./attendence/important.md) about Attendence
+
+  [see more](./attendence/important.md) about Attendence
+
 - #### Choice 5
   Exit the program
 
@@ -66,9 +69,9 @@ Enter Choice:
 
 - High Accuracy
 
-## 4. Help?
+## 4. More?
 
 contact
 
-1. devmoussac93@gmail.com
-2. yacinesha@gmail.com
+1. yacinesha@gmail.com
+2. devmoussac93@gmail.com
