@@ -2,7 +2,7 @@
 
 #### A real time face recognition attendence marker based on CNN
 
-## #1 Prerequisites
+## 1. Prerequisites
 
 libs to be installed :
 
@@ -16,7 +16,7 @@ libs to be installed :
 - dlib
 - csv
 
-## #2 Run
+## 2. Run
 
 run `main.py`
 
@@ -35,7 +35,7 @@ Select what you want to do :
 Enter Choice:
 ```
 
-### #2.1 What will happen when you enter a choice
+### 2.1. What will happen when you enter a choice
 
 - #### Choice 1
 
@@ -57,12 +57,16 @@ Enter Choice:
 
 **note** : a camera window will be shown when interacting with camera-related choices
 
-## #3 Features on-mind
+## 3. Features on-mind
 
 - Location-based and time-based student list selector
 - GUI
 
-## #4 Help?
+## 5. To be Achieved
+
+- High Accuracy
+
+## 4. Help?
 
 contact
 
