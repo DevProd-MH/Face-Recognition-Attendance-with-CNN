@@ -11,7 +11,7 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout
 from tensorflow.keras.layers import Dense, Activation, Flatten
 from PIL import Image
 from Model import model as md
-from marker import mark
+from scripts.marker import mark
 import csv
 from datetime import date
 from datetime import datetime
