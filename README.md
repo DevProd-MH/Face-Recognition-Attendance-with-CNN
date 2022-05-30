@@ -43,19 +43,19 @@ Enter Choice:
 
 - #### Choice 2
 
-  Start face capturing from the active camera and store them in temporal directory then apply **Data Augmentation** on captured faces then put the results on `dataset` directory and remove temporal directory
+  Start face capturing from the active camera and store them in temporal directory then apply **Data Augmentation** technics on captured faces then put the results on `dataset` directory and remove temporal directory
 
 - #### Choice 3
 
   Train the **CNN model** on the images collected on `dataset` directory and save on `trainedModel` directory as `trained_model.h5`
 
 - #### Choice 4
-  Start **Real-Time** multi **face-recognition** and record the present persons, after stoping the system will extarct the absent persons and save same info and pack everything on `attendence` directory as `.csv` as `{date-of-today}.csv`
+  Start **Real-Time** multi **face-recognition** and record the present persons, after stoping the system will extarct the absent persons from a pre-given list and save same info and pack everything on `attendence` directory as `.csv` as `{date-of-today}.csv`
   <br>[see more](./attendence/important.md) about Attendence
 - #### Choice 5
   Exit the program
 
-**note** : a camera window will be shown when interacting with camera-related choices
+**note** : a simple camera window will be shown when interacting with camera-related choices
 
 ## 3. Features on-mind
 
