@@ -8,7 +8,7 @@ file `studentList.csv` contains the students names list, write your students nam
 
 # Notice #2
 
-when [choice 2](../README.md#choice-2) is selected 
+
 
 ```sh
 [2] Capture Faces & Make Dataset
