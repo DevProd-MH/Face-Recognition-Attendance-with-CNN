@@ -1,10 +1,6 @@
 import numpy as np
 import cv2
 import os
-from tensorflow.keras.models import load_model
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout
-from tensorflow.keras.layers import Dense, Activation, Flatten
 from PIL import Image
 from Model import model as md
 from scripts.marker import mark
