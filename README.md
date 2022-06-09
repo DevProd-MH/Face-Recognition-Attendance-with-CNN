@@ -11,7 +11,6 @@
 - tensorflow
 - pillow
 - keras
-- dlib
 - csv
 - shutil
 - imutils
