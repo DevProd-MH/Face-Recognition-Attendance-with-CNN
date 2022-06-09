@@ -29,7 +29,8 @@ def mainMenu():
     # print("         # train the model after adding a person to dataset")
     print("[3] Train Images")
     print("[4] Recognize & Attendance")
-    print("[5] Quit")
+    print("[5] Reset all data")
+    print("[6] Quit")
     index = 0
 
     while True:
@@ -57,6 +58,13 @@ def mainMenu():
                     mainMenu()
                     break
                 case 5:
+                    print("Delete attendences files manually if you think you're not in need for them")
+                    for dir in ["dataset","tmp","list","trainedModel"]:
+                     todel = os.path.join(path,dir)
+                     if os.path.isdir(todel):
+                        shutil.rmtree(todel)
+                    break
+                case 6:
 
                     break
                 case default:
