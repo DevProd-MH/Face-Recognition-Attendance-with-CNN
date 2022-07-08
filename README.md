@@ -12,7 +12,7 @@
 - pillow
 - keras
 - csv
-- shutil
+- shutils
 - imutils
 
 ## 2. Run
