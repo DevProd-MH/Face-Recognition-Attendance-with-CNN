@@ -57,11 +57,11 @@ Select what you want to do :
 - Location-based and time-based student list selector
 - GUI
 
-## 5. To be Achieved
+## 4. To be Achieved
 
 - High Accuracy
 
-## 4. More?
+## 5. More?
 
 contact
 
